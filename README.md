@@ -15,3 +15,4 @@ yarn add redux-modular-alerts
 ## Usage Example
 
 - [index.spec.js](./__tests__/index.spec.js)
+- [Alert](./__tests__/alert.spec.js)

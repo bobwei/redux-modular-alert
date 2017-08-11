@@ -26,6 +26,8 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^2.9.1",
     "eslint": "^4.3.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-config-prettier": "^2.3.0",
@@ -40,16 +42,29 @@
     "lint-staged": "^4.0.2",
     "nodemon": "^1.11.0",
     "prettier": "^1.5.3",
+    "react-addons-test-utils": "^15.6.0",
     "rimraf": "^2.6.1"
   },
   "dependencies": {
+    "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "recompose": "^0.24.0",
     "redux": "^3.7.0",
     "redux-actions": "^2.0.3",
     "reselect": "^3.0.1"
   },
   "peerDependencies": {
+    "prop-types": "^15.5.10",
     "ramda": "^0.24.1",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.6",
+    "recompose": "^0.24.0",
     "redux": "^3.7.0",
     "redux-actions": "^2.0.3",
     "reselect": "^3.0.1"
