@@ -1,7 +1,8 @@
 {
-  "name": "js-app-boilerplate",
-  "version": "1.2.5",
+  "name": "redux-modular-alerts",
+  "version": "1.0.0",
   "description": "",
+  "main": "./lib/index.js",
   "scripts": {
     "start": "babel-node src/index.js",
     "build": "babel src --out-dir lib",
@@ -42,7 +43,16 @@
     "rimraf": "^2.6.1"
   },
   "dependencies": {
-    "dotenv": "^4.0.0"
+    "ramda": "^0.24.1",
+    "redux": "^3.7.0",
+    "redux-actions": "^2.0.3",
+    "reselect": "^3.0.1"
+  },
+  "peerDependencies": {
+    "ramda": "^0.24.1",
+    "redux": "^3.7.0",
+    "redux-actions": "^2.0.3",
+    "reselect": "^3.0.1"
   },
   "jest": {
     "verbose": true,

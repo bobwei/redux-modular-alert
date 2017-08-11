@@ -1,3 +1,17 @@
-# Js App Boilerplate
+# redux-modular-alerts
 
-This is a js app boilerplate with batteries included to speed up project initiation.
+Manage alert messages easily.
+
+- [Installation](#installation)
+- [Usage Example](#usage-example)
+
+
+## Installation
+
+```
+yarn add redux-modular-alerts
+```
+
+## Usage Example
+
+- [index.spec.js](./__tests__/index.spec.js)
