@@ -8,7 +8,10 @@ import mapProps from 'recompose/mapProps';
 import setPropTypes from 'recompose/setPropTypes';
 import branch from 'recompose/branch';
 import renderNothing from 'recompose/renderNothing';
+import lifecycle from 'recompose/lifecycle';
+import defaultProps from 'recompose/defaultProps';
 
+import { clearAlert } from '../../actions';
 import mapStateToProps from './mapStateToProps';
 
 const Component = ({ message, ...props }) =>
@@ -25,10 +28,22 @@ Component.defaultProps = {
 };
 
 export default compose(
+  defaultProps({
+    autoHideInSec: -1,
+  }),
   setPropTypes({
     alertId: PropTypes.string.isRequired,
+    autoHideInSec: PropTypes.number,
   }),
   connect(mapStateToProps),
-  mapProps(R.omit(['alertId', 'dispatch'])),
   branch(R.compose(R.isNil, R.prop('message')), renderNothing),
+  lifecycle({
+    componentDidMount() {
+      const { autoHideInSec, dispatch, alertId } = this.props;
+      if (autoHideInSec >= 0) {
+        setTimeout(() => dispatch(clearAlert(alertId)), autoHideInSec * 1000);
+      }
+    },
+  }),
+  mapProps(R.omit(['alertId', 'dispatch', 'autoHideInSec'])),
 )(Component);
