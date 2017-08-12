@@ -11,8 +11,8 @@ import renderNothing from 'recompose/renderNothing';
 import lifecycle from 'recompose/lifecycle';
 import defaultProps from 'recompose/defaultProps';
 
-import { clearAlert } from '../../actions';
 import mapStateToProps from './mapStateToProps';
+import mapDispatchToProps from './mapDispatchToProps';
 
 const Component = ({ message, ...props }) =>
   <Alert {...props}>
@@ -35,15 +35,26 @@ export default compose(
     alertId: PropTypes.string.isRequired,
     autoHideInSec: PropTypes.number,
   }),
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   branch(R.compose(R.isNil, R.prop('message')), renderNothing),
   lifecycle({
+    componentWillReceiveProps(nextProps) {
+      const isMessageEqual = R.useWith(
+        R.equals,
+        R.repeat(R.prop('message'), 2),
+      )(nextProps, this.props);
+      if (!isMessageEqual) {
+        clearTimeout(this.timeout);
+        const { autoHideInSec, clearAlert } = nextProps;
+        this.timeout = setTimeout(clearAlert, autoHideInSec * 1000);
+      }
+    },
     componentDidMount() {
-      const { autoHideInSec, dispatch, alertId } = this.props;
+      const { autoHideInSec, clearAlert } = this.props;
       if (autoHideInSec >= 0) {
-        setTimeout(() => dispatch(clearAlert(alertId)), autoHideInSec * 1000);
+        this.timeout = setTimeout(clearAlert, autoHideInSec * 1000);
       }
     },
   }),
-  mapProps(R.omit(['alertId', 'dispatch', 'autoHideInSec'])),
+  mapProps(R.omit(['alertId', 'dispatch', 'autoHideInSec', 'clearAlert'])),
 )(Component);
