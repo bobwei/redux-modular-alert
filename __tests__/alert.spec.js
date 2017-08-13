@@ -34,7 +34,7 @@ describe('alert', () => {
         <Alert alertId="alertId" />
       </Provider>,
     );
-    expect(wrapper.text()).toEqual('Create Successfully');
+    expect(wrapper.text()).toEqual('×Close alertCreate Successfully');
   });
 
   test('do not display if no message', () => {

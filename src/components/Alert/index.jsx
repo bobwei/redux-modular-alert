@@ -14,13 +14,15 @@ import defaultProps from 'recompose/defaultProps';
 import mapStateToProps from './mapStateToProps';
 import mapDispatchToProps from './mapDispatchToProps';
 
-const Component = ({ message, ...props }) =>
-  <Alert {...props}>
+const Component = ({ message, clearAlert, ...props }) =>
+  <Alert onDismiss={clearAlert} {...props}>
     {message}
   </Alert>;
 
 Component.propTypes = {
   message: PropTypes.string,
+  /* injected from mapDispatchToProps */
+  clearAlert: PropTypes.func.isRequired,
 };
 
 Component.defaultProps = {
@@ -56,5 +58,5 @@ export default compose(
       }
     },
   }),
-  mapProps(R.omit(['alertId', 'dispatch', 'autoHideInSec', 'clearAlert'])),
+  mapProps(R.omit(['alertId', 'dispatch', 'autoHideInSec'])),
 )(Component);
